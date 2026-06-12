@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "gate_state9": {
+    "_comment_content_safety_passed": "内容安全检查是否通过",
+    "content_safety_passed": false,
+    "_comment_plan_confirmed": "方案是否经用户确认（L1安全模式用）",
+    "plan_confirmed": false,
+    "_comment_plan_confirmed_by": "确认者（\"user\"/\"auto\"/null）",
+    "plan_confirmed_by": null,
+    "_comment_changes_preview_written": "变更预览是否已输出",
+    "changes_preview_written": false,
+    "_comment_file_modifications_this_cycle": "本周期文件修改计数",
+    "file_modifications_this_cycle": 0,
+    "_comment_dangerous_ops_blocked_this_cycle": "本周期被拦截的危险操作列表",
+    "dangerous_ops_blocked_this_cycle": [],
+    "_comment_gate_triggered": "本周期是否触发过任何闸门",
+    "gate_triggered": false,
+    "_comment_gate_triggered_reason": "触发原因（如有）",
+    "gate_triggered_reason": null,
+    "_comment_gate_approvals": "闸门批准记录",
+    "gate_approvals": {}
+  },
+  "termination": {
+    "status": "running",
+    "completed_at": null,
+    "exit_reason": null
+  },
+  "nonce_tokens": {
+    "_comment_active_tokens": "当前活跃的 nonce（待消费）",
+    "active_tokens": [],
+    "_comment_consumed_tokens": "已消费的 nonce（防重放）",
+    "consumed_tokens": [],
+    "_comment_last_generated_at": "最后生成时间",
+    "last_generated_at": null
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "progress": {
+    "phase": "init",
+    "cycle": 1,
+    "convergence_counter": 0,
+    "part1_round": 0,
+    "verification_pass_count": 0,
+    "new_issues_this_round": false,
+    "new_issues_last_round": true,
+    "issues_snapshot_at_round_start": null,
+    "retry_count_this_phase": 0,
+    "implementation_engine": null,
+    "repair_context": null,
+    "phase_transitions": []
+  },
+  "config": {
+    "mode": "auto",
+    "mode_comment": "'safe'(L1)/'auto'(L2默认)/'unsafe'(L3)/'collaborative'(L1+). 由--safe/--unsafe/--interactive标志设置",
+    "tdd": false,
+    "skip_testing": false,
+    "max_cycles": 5,
+    "max_part1_rounds": 5,
+    "convergence_rounds": 2,
+    "route_repeat_max": 3,
+    "user_request": "",
+    "gate_file_count_threshold": {"safe": 3, "auto": 10, "unsafe": 999},
+    "gate_irreversible_ops_blocked_in": ["safe", "auto"]
+  },
+  "tasks": {
+    "total": 0,
+    "by_status": {"completed": 0, "in_progress": 0, "pending": 0, "failed": 0, "skipped": 0}
+  },
+  "issues": {
+    "active": {"p0": [], "p1": [], "p2": []},
+    "resolved": {"p0": 0, "p1": 0, "p2": 0},
+    "all_time": {"p0_total": 0, "p1_total": 0, "p2_total": 0}
+  },
+  "artifacts": {
+    "requirements": {"path":".claude/loop-claudecode/artifacts/01-requirements.md","status":"not_generated","generated_at":null,"generated_in_phase":null,"checksum":null,"version":0},
+    "direction": {"path":".claude/loop-claudecode/artifacts/02-direction.md","status":"not_generated","generated_at":null,"generated_in_phase":null,"checksum":null,"version":0},
+    "solution": {"path":".claude/loop-claudecode/artifacts/03-solution.md","status":"not_generated","generated_at":null,"generated_in_phase":null,"checksum":null,"version":0},
+    "impl_plan": {"path":".claude/loop-claudecode/artifacts/04-implementation-plan.md","status":"not_generated","generated_at":null,"generated_in_phase":null,"checksum":null,"version":0},
+    "task_list": {"path":".claude/loop-claudecode/artifacts/05-task-list.json","status":"not_generated","generated_at":null,"generated_in_phase":null,"checksum":null,"version":0},
+    "implementation_diff": {"path":".claude/loop-claudecode/artifacts/05b-implementation-diff.patch","status":"not_generated","generated_at":null,"generated_in_phase":null,"checksum":null,"version":0},
+    "code_review": {"path":".claude/loop-claudecode/artifacts/06-code-review.md","status":"not_generated","generated_at":null,"generated_in_phase":null,"checksum":null,"version":0},
+    "test_plan": {"path":".claude/loop-claudecode/artifacts/07-test-plan.md","status":"not_generated","generated_at":null,"generated_in_phase":null,"checksum":null,"version":0},
+    "test_results": {"path":".claude/loop-claudecode/artifacts/08-test-results.json","status":"not_generated","generated_at":null,"generated_in_phase":null,"checksum":null,"version":0},
+    "issue_list": {"path":".claude/loop-claudecode/artifacts/09-issue-list.json","status":"not_generated","generated_at":null,"generated_in_phase":null,"checksum":null,"version":0},
+    "verification": {"path":".claude/loop-claudecode/artifacts/10-verification.md","status":"not_generated","generated_at":null,"generated_in_phase":null,"checksum":null,"version":0},
+    "context_summary": {"path":".claude/loop-claudecode/artifacts/context-summary.md","status":"not_generated","generated_at":null,"generated_in_phase":null,"checksum":null,"version":0}
+  },
+  "routing_history": [],
+  "routing_repeat_tracker": {},
+  "gate_state": {
+    "current_gate": null,
+    "checks_passed": [],
+    "checks_failed": [],
+    "irreversible_ops_blocked": true,
+    "file_count": 0,
+    "gate_history": []
+  },
+  "pending_confirmation": {
+    "id": null,
+    "status": null,
+    "phase": null,
+    "context": null,
+    "options": [],
+    "created_at": null,
+    "timeout_minutes": 30,
+    "timeout_action": "auto_degrade",
+    "response": null,
+    "resolved_at": null,
+    "attempt": 0
+  },
+  "phase_contracts": {
+    "active_phase": "init",
+    "declared_at": null,
+    "contracts": {}
+  },
+  "context_snapshot": {
+    "last_action": "",
+    "key_decisions": [],
+    "narrative_1k": ""
+  },
+  "termination": {
+    "status": "running",
+    "completed_at": null,
+    "exit_reason": null
+  },
+  "housekeeping": {
+    "invocation_count": 0,
+    "total_tokens_estimated": 0,
+    "lock_file": ".claude/loop-claudecode/.lock"
+  }
+}

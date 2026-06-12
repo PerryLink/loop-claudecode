@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://loop-claudecode.dev/state.json.schema.json",
+  "title": "loop-claudecode state.json Schema",
+  "description": "loop-claudecode 状态机核心文件的 JSON Schema 定义",
+  "type": "object",
+  "required": ["schema_version", "progress", "config", "tasks", "issues", "artifacts", "routing_history", "routing_repeat_tracker", "gate_state", "pending_confirmation", "phase_contracts", "context_snapshot", "termination", "housekeeping"],
+  "$defs": {
+    "artifact_entry": {
+      "type": "object",
+      "required": ["path", "status", "generated_at", "generated_in_phase", "checksum", "version"],
+      "properties": {
+        "path": {"type": "string"},
+        "status": {"type": "string", "enum": ["not_generated", "generated", "regenerated", "error"]},
+        "generated_at": {"type": ["string", "null"], "format": "date-time"},
+        "generated_in_phase": {"type": ["string", "null"]},
+        "checksum": {"type": ["string", "null"]},
+        "version": {"type": "integer", "minimum": 0}
+      }
+    }
+  },
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1,
+      "description": "Schema 版本号，当前固定为 1"
+    },
+    "progress": {
+      "type": "object",
+      "required": ["phase", "cycle", "convergence_counter", "part1_round", "verification_pass_count", "new_issues_this_round", "new_issues_last_round", "retry_count_this_phase", "implementation_engine", "repair_context", "phase_transitions"],
+      "properties": {
+        "phase": {
+          "type": "string",
+          "enum": ["init", "part_1_1", "part_1_2", "part_1_3", "part_2_1", "part_2_2", "part_2_3", "part_2_4", "part_2_5", "part_2_6", "part_2_7", "part_2_8", "routing", "awaiting_approval", "complete", "paused", "failed"],
+          "description": "当前工作流阶段"
+        },
+        "cycle": {"type": "integer", "minimum": 0},
+        "convergence_counter": {"type": "integer", "minimum": 0},
+        "part1_round": {"type": "integer", "minimum": 0},
+        "verification_pass_count": {"type": "integer", "minimum": 0},
+        "new_issues_this_round": {"type": "boolean"},
+        "new_issues_last_round": {"type": "boolean"},
+        "issues_snapshot_at_round_start": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "object", "required": ["p0", "p1", "p2"],
+             "properties": {"p0": {"type": "integer"}, "p1": {"type": "integer"}, "p2": {"type": "integer"}}}
+          ]
+        },
+        "retry_count_this_phase": {"type": "integer", "minimum": 0, "maximum": 2},
+        "implementation_engine": {"type": ["string", "null"], "enum": ["executing-plans", "subagent", null]},
+        "repair_context": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "object", "required": ["from_phase", "routing_reason", "target_issues"],
+             "properties": {
+               "from_phase": {"type": "string"},
+               "routing_reason": {"type": "string"},
+               "target_issues": {"type": "array", "items": {"type": "string"}},
+               "repair_plan": {"type": ["string", "null"]},
+               "attempt_number": {"type": "integer", "minimum": 0},
+               "review_required": {"type": "boolean"},
+               "affected_files": {"type": "array", "items": {"type": "string"}}
+             }}
+          ]
+        },
+        "phase_transitions": {
+          "type": "array",
+          "items": {"type": "object", "required": ["from", "to", "at"],
+            "properties": {"from": {"type": "string"}, "to": {"type": "string"}, "at": {"type": "string", "format": "date-time"}}}
+        }
+      }
+    },
+    "config": {
+      "type": "object",
+      "required": ["mode", "tdd", "skip_testing", "max_cycles", "max_part1_rounds", "convergence_rounds", "route_repeat_max", "user_request"],
+      "properties": {
+        "mode": {"type": "string", "enum": ["safe", "auto", "unsafe", "collaborative"]},
+        "mode_comment": {"type": "string"},
+        "tdd": {"type": "boolean"},
+        "skip_testing": {"type": "boolean"},
+        "max_cycles": {"type": "integer", "minimum": 1},
+        "max_part1_rounds": {"type": "integer", "minimum": 1},
+        "convergence_rounds": {"type": "integer", "minimum": 1},
+        "route_repeat_max": {"type": "integer", "minimum": 1},
+        "user_request": {"type": "string"},
+        "gate_file_count_threshold": {
+          "type": "object",
+          "required": ["safe", "auto", "unsafe"],
+          "properties": {
+            "safe": {"type": "integer", "minimum": 0},
+            "auto": {"type": "integer", "minimum": 0},
+            "unsafe": {"type": "integer", "minimum": 0}
+          }
+        },
+        "gate_irreversible_ops_blocked_in": {
+          "type": "array",
+          "items": {"type": "string", "enum": ["safe", "auto", "unsafe", "collaborative"]}
+        }
+      }
+    },
+    "tasks": {
+      "type": "object",
+      "required": ["total", "by_status"],
+      "properties": {
+        "total": {"type": "integer", "minimum": 0},
+        "by_status": {
+          "type": "object",
+          "required": ["completed", "in_progress", "pending", "failed", "skipped"],
+          "properties": {
+            "completed": {"type": "integer", "minimum": 0},
+            "in_progress": {"type": "integer", "minimum": 0},
+            "pending": {"type": "integer", "minimum": 0},
+            "failed": {"type": "integer", "minimum": 0},
+            "skipped": {"type": "integer", "minimum": 0}
+          }
+        }
+      }
+    },
+    "issues": {
+      "type": "object",
+      "required": ["active", "resolved", "all_time"],
+      "properties": {
+        "active": {
+          "type": "object", "required": ["p0", "p1", "p2"],
+          "properties": {
+            "p0": {"type": "array"}, "p1": {"type": "array"}, "p2": {"type": "array"}
+          }
+        },
+        "resolved": {
+          "type": "object", "required": ["p0", "p1", "p2"],
+          "properties": {
+            "p0": {"type": "integer"}, "p1": {"type": "integer"}, "p2": {"type": "integer"}
+          }
+        },
+        "all_time": {
+          "type": "object", "required": ["p0_total", "p1_total", "p2_total"],
+          "properties": {
+            "p0_total": {"type": "integer"}, "p1_total": {"type": "integer"}, "p2_total": {"type": "integer"}
+          }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "required": ["requirements", "direction", "solution", "impl_plan", "task_list", "implementation_diff", "code_review", "test_plan", "test_results", "issue_list", "verification", "context_summary"],
+      "properties": {
+        "requirements": {"$ref": "#/$defs/artifact_entry"},
+        "direction": {"$ref": "#/$defs/artifact_entry"},
+        "solution": {"$ref": "#/$defs/artifact_entry"},
+        "impl_plan": {"$ref": "#/$defs/artifact_entry"},
+        "task_list": {"$ref": "#/$defs/artifact_entry"},
+        "implementation_diff": {"$ref": "#/$defs/artifact_entry"},
+        "code_review": {"$ref": "#/$defs/artifact_entry"},
+        "test_plan": {"$ref": "#/$defs/artifact_entry"},
+        "test_results": {"$ref": "#/$defs/artifact_entry"},
+        "issue_list": {"$ref": "#/$defs/artifact_entry"},
+        "verification": {"$ref": "#/$defs/artifact_entry"},
+        "context_summary": {"$ref": "#/$defs/artifact_entry"}
+      }
+    },
+    "routing_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "reason", "at"],
+        "properties": {
+          "from": {"type": "string"},
+          "to": {"type": "string"},
+          "reason": {"type": "string"},
+          "at": {"type": "string", "format": "date-time"}
+        }
+      }
+    },
+    "routing_repeat_tracker": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "gate_state": {
+      "type": "object",
+      "required": ["_ref"],
+      "properties": {
+        "_ref": {"type": "string", "pattern": "^\\.claude/loop-claudecode/gate_state\\.json#/gate_state9$"},
+        "_note": {"type": "string"}
+      }
+    },
+    "pending_confirmation": {
+      "type": "object",
+      "required": ["id", "status", "options", "timeout_minutes", "timeout_action", "attempt"],
+      "properties": {
+        "id": {"type": ["string", "null"]},
+        "status": {"type": ["string", "null"], "enum": ["pending", "resolved", "timed_out", "cancelled", null]},
+        "phase": {"type": ["string", "null"]},
+        "context": {"type": ["string", "null"]},
+        "options": {"type": "array", "items": {"type": "string"}},
+        "created_at": {"type": ["string", "null"], "format": "date-time"},
+        "timeout_minutes": {"type": "integer", "minimum": 1},
+        "timeout_action": {"type": "string", "enum": ["auto_degrade", "auto_approve", "auto_abort"]},
+        "response": {"type": ["string", "null"]},
+        "resolved_at": {"type": ["string", "null"], "format": "date-time"},
+        "attempt": {"type": "integer", "minimum": 0}
+      }
+    },
+    "phase_contracts": {
+      "type": "object",
+      "required": ["active_phase", "declared_at", "contracts"],
+      "properties": {
+        "active_phase": {"type": "string"},
+        "declared_at": {"type": ["string", "null"], "format": "date-time"},
+        "contracts": {"type": "object"}
+      }
+    },
+    "context_snapshot": {
+      "type": "object",
+      "required": ["last_action", "key_decisions", "narrative_1k"],
+      "properties": {
+        "last_action": {"type": "string"},
+        "key_decisions": {"type": "array", "items": {"type": "string"}},
+        "narrative_1k": {"type": "string", "maxLength": 1024}
+      }
+    },
+    "termination": {
+      "type": "object",
+      "required": ["_ref"],
+      "properties": {
+        "_ref": {"type": "string", "pattern": "^\\.claude/loop-claudecode/gate_state\\.json#/termination$"},
+        "_note": {"type": "string"}
+      }
+    },
+    "housekeeping": {
+      "type": "object",
+      "required": ["invocation_count", "total_tokens_estimated", "lock_file"],
+      "properties": {
+        "invocation_count": {"type": "integer", "minimum": 0},
+        "total_tokens_estimated": {"type": "integer", "minimum": 0},
+        "lock_file": {"type": "string"}
+      }
+    }
+  }
+}
