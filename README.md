@@ -1,5 +1,7 @@
 # loop-claudecode
 
+*A [**Loop Engineering**](https://github.com/PerryLink/loop-everything) autonomous coding loop engine — turn goals into production code.*
+
 > **Set a goal. Let the loop complete it.** — A goal-driven, fully autonomous development closed-loop meta-skill for Claude Code.
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
@@ -33,7 +35,6 @@ repo: https://github.com/PerryLink/loop-claudecode
 
 ---
 
-![Architecture](https://via.placeholder.com/800x400?text=loop-claudecode+Architecture+Diagram)
 
 ---
 
@@ -228,7 +229,6 @@ repo: https://github.com/PerryLink/loop-claudecode
 
 ---
 
-![Architecture](https://via.placeholder.com/800x400?text=loop-claudecode+Architecture+Diagram)
 
 ---
 
