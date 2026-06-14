@@ -1,17 +1,22 @@
 # loop-claudecode
 
-*A [**Loop Engineering**](https://github.com/PerryLink/loop-everything) autonomous coding loop engine — turn goals into production code.*
-
 > **Set a goal. Let the loop complete it.** — A goal-driven, fully autonomous development closed-loop meta-skill for Claude Code.
 
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)](#)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-%E2%89%A51.0.0-orange.svg)](#)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Star History Chart](https://api.star-history.com/svg?repos=PerryLink/loop-claudecode&type=Date)](https://star-history.com/#PerryLink/loop-claudecode&Date)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)]()
 [![Status](https://img.shields.io/badge/status-active-brightgreen.svg)]()
 
 ---
+
+[**English**](#english) | [**中文**](#中文)
+
+---
+
+## English
 
 ## &#x1F916; LLMO Definition
 
@@ -35,6 +40,7 @@ repo: https://github.com/PerryLink/loop-claudecode
 
 ---
 
+![Architecture](https://via.placeholder.com/800x400?text=loop-claudecode+Architecture+Diagram)
 
 ---
 
@@ -125,6 +131,34 @@ git clone https://github.com/PerryLink/loop-claudecode.git && cd loop-claudecode
 claude --resume   # or: claude --continue
 ```
 
+### Mirror Installation (China Mainland Users)
+
+If you are in China Mainland and GitHub access is slow, you can use the following mirror methods:
+
+```bash
+# Method 1: Use gitclone.com mirror acceleration
+git clone https://gitclone.com/github.com/PerryLink/loop-claudecode.git
+cd loop-claudecode && bash install.sh
+
+# Method 2: Use Gitee mirror (if someone has mirrored it)
+# git clone https://gitee.com/mirrors/loop-claudecode.git
+
+# Method 3: Manually download ZIP
+# Visit https://github.com/PerryLink/loop-claudecode/archive/refs/heads/main.zip in browser
+# Extract and run: bash install.sh
+
+# Method 4: Configure Git proxy (if you have a proxy)
+# git config --global http.proxy http://127.0.0.1:7890
+# git config --global https.proxy http://127.0.0.1:7890
+# git clone https://github.com/PerryLink/loop-claudecode.git
+# cd loop-claudecode && bash install.sh
+# After completion, remove proxy:
+# git config --global --unset http.proxy
+# git config --global --unset https.proxy
+```
+
+> **Note:** Mirror sources may not be synced in real time. It is recommended to use the official repository for the latest version. After installing via mirror, you can switch the remote back with: `git remote set-url origin https://github.com/PerryLink/loop-claudecode.git`
+
 **Modes:** `auto` (default, fully automatic) | `safe` (pauses at key decisions for confirmation) | `collaborative` (pauses at all decisions) | `unsafe` (minimum safety enforcement — irreversible ops still blocked)
 
 ---
@@ -194,14 +228,15 @@ For commercial licensing, sponsorship, or collaboration: **novelnexusai@outlook.
 
 ---
 
-# loop-claudecode（中文版）
+## 中文
 
 > **设定一个目标，剩下的交给循环。** — Claude Code 上的目标驱动全自动开发闭环元技能。
 
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)](#)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-%E2%89%A51.0.0-orange.svg)](#)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Star History Chart](https://api.star-history.com/svg?repos=PerryLink/loop-claudecode&type=Date)](https://star-history.com/#PerryLink/loop-claudecode&Date)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)]()
 [![Status](https://img.shields.io/badge/status-active-brightgreen.svg)]()
 
@@ -229,6 +264,7 @@ repo: https://github.com/PerryLink/loop-claudecode
 
 ---
 
+![Architecture](https://via.placeholder.com/800x400?text=loop-claudecode+Architecture+Diagram)
 
 ---
 
@@ -240,6 +276,67 @@ repo: https://github.com/PerryLink/loop-claudecode
 - &#x1F527; **自动修复循环** — P0/P1/P2 问题分级→自动回退重设计（P0）或定向修复（P1/P2）。收敛计数器确保方案稳定后才停止。
 - &#x1F6E1; **安全闸门（可选）** — G1/G2/G3 OS 级 Hook 脚本。G1 保护 gate_state.json 防 AI 篡改。G2 拦截危险操作（即使在 unsafe 模式，灾难性操作仍会被阻止）。G3 Stop Hook 强制执行 Default-FAIL。
 - &#x1F30D; **跨平台设计** — POSIX/Windows 双路径文件协议，$DATA_ROOT 占位符支持移植。
+
+---
+
+## &#x1F3D7; 工作原理
+
+```
+                         ┌─────────────────────────────────────┐
+                         │         /goal 调用                   │
+                         │  "loop-claudecode: <你的目标>"        │
+                         └─────────────┬───────────────────────┘
+                                       │
+                                       ▼
+                         ┌─────────────────────────┐
+                         │   读取 SKILL.md          │
+                         │   读取 state.json        │
+                         └─────────────┬───────────┘
+                                       │
+                    ┌──────────────────┼──────────────────┐
+                    │                  │                  │
+                    ▼                  ▼                  ▼
+            ┌───────────┐    ┌───────────────┐    ┌──────────────┐
+            │ state.json │    │ state.json    │    │ state.json   │
+            │ 不存在？    │    │ 终止状态      │    │ cycle >      │
+            │ → 初始化    │    │ 已完成？      │    │ max_cycles?  │
+            │            │    │ → 退出/报告   │    │ → 退出/警告  │
+            └─────┬─────┘    └───────────────┘    └──────────────┘
+                  │
+                  ▼
+    ┌─────────────────────────────────────────────────┐
+    │              第1部分：设计气泡                     │
+    │  ┌──────────┐   ┌──────────┐   ┌────────────┐   │
+    │  │ 1.1      │──▶│ 1.2      │──▶│ 1.3        │   │
+    │  │ 需求分析 │   │ 方向研究 │   │ 方案设计   │   │
+    │  └──────────┘   └──────────┘   └─────┬──────┘   │
+    └──────────────────────────────────────┼──────────┘
+                                           │
+                                           ▼
+    ┌─────────────────────────────────────────────────┐
+    │            第2部分：实施链条                        │
+    │  ┌──────┐  ┌──────┐  ┌──────┐  ┌──────┐        │
+    │  │ 2.1  │─▶│ 2.2  │─▶│ 2.3  │─▶│ 2.4  │        │
+    │  │ 计划 │  │ 实施 │  │ 审查 │  │测试  │        │
+    │  └──────┘  └──────┘  └──────┘  │策略  │        │
+    │                                  └──┬───┘        │
+    │  ┌──────┐  ┌──────┐  ┌──────┐  ┌──┴───┐        │
+    │  │ 2.5  │─▶│ 2.6  │─▶│ 2.7  │─▶│ 2.8  │        │
+    │  │ 测试 │  │ 验证 │  │ 修复 │  │收敛  │        │
+    │  │ 执行 │  │      │  │      │  │检查  │        │
+    │  └──────┘  └──────┘  └──────┘  └──┬───┘        │
+    └────────────────────────────────────┼────────────┘
+                                         │
+                          ┌──────────────┼──────────────┐
+                          │              │              │
+                          ▼              ▼              ▼
+                   ┌──────────┐  ┌──────────┐  ┌──────────────┐
+                   │已收敛？  │  │新问题？  │  │路由重复？    │
+                   │→ 完成    │  │→ 修复循环│  │→ 暂停/用户   │
+                   └──────────┘  └──────────┘  └──────────────┘
+```
+
+---
 
 ## &#x1F680; 极速开始
 
@@ -314,7 +411,7 @@ cd loop-claudecode && bash install.sh
 
 | Project | Description | Link |
 |---------|-------------|------|
-| ⭐ | **[loop-everything](https://github.com/PerryLink/loop-everything)** | Ecosystem hub — back to main index | [GitHub](https://github.com/PerryLink/loop-everything) |
+| ⭐ | **[loop-everything](https://github.com/PerryLink/loop-everything)** | 生态总入口 — 返回主索引 | [GitHub](https://github.com/PerryLink/loop-everything) |
 | loop-aider | Aider CLI autonomous loop | [GitHub](https://github.com/PerryLink/loop-aider) |
 | loop-ollama | Ollama local model loop | [GitHub](https://github.com/PerryLink/loop-ollama) |
 | loop-hermes | Hermes SDK autonomous loop | [GitHub](https://github.com/PerryLink/loop-hermes) |
