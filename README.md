@@ -46,7 +46,6 @@ repo: https://github.com/PerryLink/loop-claudecode
 ## &#x2728; Features
 
 - 🎯 **Goal-Driven** — Describe your requirement in natural language. In `auto` (default) mode, the system automatically handles: requirement clarification, solution design, code implementation, test verification, issue repair, and convergence termination. In `safe`/`collaborative` modes, it pauses for confirmation at key decisions. No manual step triggering needed.
-- 🏗️ **Three-Layer Architecture** — SKILL.md (instruction brain) + /goal (outer convergence loop) + state.json (file-based state machine). Survives compaction, session restarts, and kill -9.
 - 🔄 **13-Phase Workflow** — Part 1 design bubble (1.1→1.2→1.3, continuous context) + Part 2 implementation chain (2.1→2.8, discrete checkpoints) + routing decision gate + terminal phases (complete/paused/failed).
 - 🔧 **Auto-Repair Loop** — P0/P1/P2 issue classification, automatic fallback to redesign (P0) or targeted fix (P1/P2). Convergence counter ensures stability before stopping.
 - 🛡️ **Safety Gates (Optional)** — G1/G2/G3 OS-level Hook scripts. G1 protects gate_state.json from AI tampering. G2 blocks dangerous operations (even in unsafe mode, catastrophic operations remain blocked). G3 Stop Hook enforces Default-FAIL via multi-layer verification before allowing termination.
