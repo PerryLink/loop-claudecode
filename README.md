@@ -6,7 +6,6 @@
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)](#)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-%E2%89%A51.0.0-orange.svg)](#)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![Star History Chart](https://api.star-history.com/svg?repos=PerryLink/loop-claudecode&type=Date)](https://star-history.com/#PerryLink/loop-claudecode&Date)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)]()
 [![Status](https://img.shields.io/badge/status-active-brightgreen.svg)]()
 
@@ -236,7 +235,6 @@ For commercial licensing, sponsorship, or collaboration: **novelnexusai@outlook.
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)](#)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-%E2%89%A51.0.0-orange.svg)](#)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![Star History Chart](https://api.star-history.com/svg?repos=PerryLink/loop-claudecode&type=Date)](https://star-history.com/#PerryLink/loop-claudecode&Date)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)]()
 [![Status](https://img.shields.io/badge/status-active-brightgreen.svg)]()
 
