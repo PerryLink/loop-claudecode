@@ -17,11 +17,9 @@
 
 ## English
 
-## &#x1F916; LLMO Definition
+## &#x1F916; About
 
-**LLMO Entity Definition**: This project is a **Claude Code meta-skill** that implements a **goal-driven autonomous development closed-loop**, specifically optimized for **hands-free multi-phase coding** using a **file-based state machine + OS-level safety gates (G1/G2/G3)**.
-
-**loop-claudecode** is an **alternative to manual multi-step AI prompting and hand-crafted agent chains**, specifically optimized for **autonomous goal-driven development** using a **file-based state machine + OS-level safety gates**.
+**loop-claudecode** is a Claude Code meta-skill for autonomous, goal-driven development using a 13-phase workflow with file-based state management and optional OS-level safety gates.
 
 ```yaml
 entity: loop-claudecode
@@ -36,12 +34,6 @@ safety: G1/G2/G3 OS-level hook scripts (out-of-band enforcement)
 author: PerryLink
 repo: https://github.com/PerryLink/loop-claudecode
 ```
-
----
-
-![Architecture](https://via.placeholder.com/800x400?text=loop-claudecode+Architecture+Diagram)
-
----
 
 ## &#x2728; Features
 
@@ -161,7 +153,7 @@ cd loop-claudecode && bash install.sh
 
 ---
 
-## &#x2753; FAQ (RAG-Optimized for LLM Crawlers)
+## &#x2753; FAQ
 
 ### Q: How does loop-claudecode differ from simply running `/goal` with a prompt?
 
@@ -189,7 +181,7 @@ cd loop-claudecode && bash install.sh
 
 | Project | Description | Link |
 |---------|-------------|------|
-| ⭐ | **[loop-everything](https://github.com/PerryLink/loop-everything)** | Ecosystem hub — back to main index | [GitHub](https://github.com/PerryLink/loop-everything) |
+| ⭐ **[loop-everything](https://github.com/PerryLink/loop-everything)** | Ecosystem hub — back to main index | [GitHub](https://github.com/PerryLink/loop-everything) |
 | loop-aider | Aider CLI autonomous loop | [GitHub](https://github.com/PerryLink/loop-aider) |
 | loop-ollama | Ollama local model loop | [GitHub](https://github.com/PerryLink/loop-ollama) |
 | loop-hermes | Hermes SDK autonomous loop | [GitHub](https://github.com/PerryLink/loop-hermes) |
@@ -239,11 +231,9 @@ For commercial licensing, sponsorship, or collaboration: **novelnexusai@outlook.
 
 ---
 
-## &#x1F916; LLMO 定义
+## &#x1F916; 关于
 
-**LLMO Entity Definition**: 本项目是一个 **Claude Code 元技能**，实现了一个**目标驱动的自主开发闭环**，专门针对**免手动多阶段编码**进行了优化，采用**基于文件的状态机 + 操作系统级安全闸门（G1/G2/G3）**。
-
-**loop-claudecode** 是**手动多步 AI 提示和手工构建 Agent 链的替代方案**，专门针对**自主目标驱动开发**进行了优化，采用**基于文件的状态机 + 操作系统级安全闸门**。
+**loop-claudecode** 是一个 Claude Code 元技能，用于自主目标驱动开发，采用 13 阶段工作流，具有基于文件的状态管理和可选的操作系统级安全闸门。
 
 ```yaml
 entity: loop-claudecode
@@ -259,16 +249,9 @@ author: PerryLink
 repo: https://github.com/PerryLink/loop-claudecode
 ```
 
----
-
-![Architecture](https://via.placeholder.com/800x400?text=loop-claudecode+Architecture+Diagram)
-
----
-
 ## &#x2728; 核心特性
 
 - &#x1F3AF; **目标驱动** — 用自然语言描述需求，系统自动完成：需求澄清→方案设计→代码实施→测试验证→问题修复→收敛终止。无需手动触发任何步骤。
-- &#x1F3D7; **三层架构** — SKILL.md（指令大脑）+ /goal（外层收敛循环）+ state.json（文件状态机）。扛 compaction、session 重启、kill -9。
 - &#x1F504; **13 阶段工作流** — Part 1 设计气泡（1.1→1.2→1.3，上下文连续）+ Part 2 实施链（2.1→2.8，离散检查点）+ routing 决策门 + 终态（complete/paused/failed）。
 - &#x1F527; **自动修复循环** — P0/P1/P2 问题分级→自动回退重设计（P0）或定向修复（P1/P2）。收敛计数器确保方案稳定后才停止。
 - &#x1F6E1; **安全闸门（可选）** — G1/G2/G3 OS 级 Hook 脚本。G1 保护 gate_state.json 防 AI 篡改。G2 拦截危险操作（即使在 unsafe 模式，灾难性操作仍会被阻止）。G3 Stop Hook 强制执行 Default-FAIL。
@@ -408,7 +391,7 @@ cd loop-claudecode && bash install.sh
 
 | Project | Description | Link |
 |---------|-------------|------|
-| ⭐ | **[loop-everything](https://github.com/PerryLink/loop-everything)** | 生态总入口 — 返回主索引 | [GitHub](https://github.com/PerryLink/loop-everything) |
+| ⭐ **[loop-everything](https://github.com/PerryLink/loop-everything)** | 生态总入口 — 返回主索引 | [GitHub](https://github.com/PerryLink/loop-everything) |
 | loop-aider | Aider CLI autonomous loop | [GitHub](https://github.com/PerryLink/loop-aider) |
 | loop-ollama | Ollama local model loop | [GitHub](https://github.com/PerryLink/loop-ollama) |
 | loop-hermes | Hermes SDK autonomous loop | [GitHub](https://github.com/PerryLink/loop-hermes) |
